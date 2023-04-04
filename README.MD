@@ -24,7 +24,33 @@ mesh_navigation: `sudo apt install ros-noetic-mesh-navigation ros-noetic-rviz-ma
 
 It uses git lfs to store binary files.
 
+## Fake odom
+
+By default, it uses the published odom by the husky package. If you experience troubles, for instance robot
+slipping on the terrain, you can try to use the odom provide by the gazebo simulation. To do so :
+
+- Add the following code to husky_description/urdf/husky.urdf.xacro
+```xml
+  <gazebo>
+    <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>ground_truth/state</topicName>
+      <gaussianNoise>0.01</gaussianNoise>
+      <frameName>world</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
+```
+- Set `fake_pos` arg to `true`
+
+If you have trouble with TF odom -> base_link not published enough or too much, tweak the `updateRate` param.
+
+
 ## Simulation
+
 
 Start simulation: `roslaunch husky_mesh_nav sim.launch`
 

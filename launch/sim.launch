@@ -2,7 +2,7 @@
 <launch>
     <arg name="use_sim_time" default="true"/>
     <arg name="husky_sim" default="true"/>
-    <arg name="fake_pos" default="true"/>
+    <arg name="fake_pos" default="false"/>
 
     <param name="/use_sim_time" value="$(arg use_sim_time)"/>
     <param name="/husky_sim" value="$(arg use_sim_time)"/>
