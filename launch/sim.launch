@@ -1,0 +1,20 @@
+
+<launch>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="husky_sim" default="true"/>
+    <arg name="fake_pos" default="true"/>
+
+    <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+    <param name="/husky_sim" value="$(arg use_sim_time)"/>
+
+    <include file="$(find husky_gazebo)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find husky_mesh_nav)/worlds/botanical_garden.world"/>
+    </include>
+
+    <node if="$(arg fake_pos)" pkg="husky_mesh_nav" type="fake_pos.py" name="fake_tf"/>
+
+    <!-- Rotate the robot so that the sim spawn and the TFs match -->
+    <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 2.56 0 0 map odom 10"/>
+
+
+</launch>

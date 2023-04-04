@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="rviz" default="true" />
+  <arg name="dataset" default="botanical_garden_osnabrueck" />
+  <arg name="dir" default="maps/$(arg dataset)" />
+  <arg name="map_file" default="$(arg dir)/$(arg dataset).h5" />
+  <arg name="map_config" default="$(find husky_mesh_nav)/configs/map_config.yaml" />
+  <arg name="nav_config" default="$(find husky_mesh_nav)/configs/nav_config.yaml" />
+  <arg name="part" default="mesh" />
+  <arg name="planner_patience" default="10"/>
+
+  <node name="move_base_flex" pkg="mbf_mesh_nav" type="mbf_mesh_nav" output="screen">
+    <rosparam command="load" file="$(find husky_mesh_nav)/$(arg nav_config)"/>
+    <rosparam command="load" ns="mesh_map" file="$(find husky_mesh_nav)/$(arg map_config)"/>
+
+    <param name="planner_patience" value="$(arg planner_patience)"/>
+    <param name="mesh_map/mesh_file" value="$(find husky_mesh_nav)/$(arg map_file)" />
+    <param name="mesh_map/mesh_part" value="$(arg part)"/> 
+  </node>
+
+  <!-- RViz with config -->
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find husky_mesh_nav)/rviz/default.rviz" />
+
+  <!--
+   <node name="move_base_legacy_relay" pkg="mbf_costmap_nav" type="move_base_legacy_relay.py">
+     <rosparam file="$(find husky_mesh_nav)/configs/default_planner.yaml" command="load"/>
+   </node>
+  -->
+
+</launch>

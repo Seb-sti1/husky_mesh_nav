@@ -1,0 +1,2 @@
+base_global_planner: dijkstra_mesh_planner
+base_local_planner: mesh_controller

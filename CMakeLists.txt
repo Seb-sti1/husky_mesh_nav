@@ -8,8 +8,7 @@ project(husky_mesh_nav)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  mesh_nav
-  move_base_flex
+  mbf_mesh_nav
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,7 +103,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES husky_mesh_nav
-#  CATKIN_DEPENDS mesh_nav move_base_flex
+#  CATKIN_DEPENDS mbf_mesh_nav
 #  DEPENDS system_lib
 )
 

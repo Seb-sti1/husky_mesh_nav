@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="use_sim_time" default="true"/>
+  <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+
+  <arg name="experiment" default="botanical_garden_4_dijkstra"/>
+  <node name="publish_start_and_goal" pkg="rostopic" type="rostopic" args="pub -1 /move_base_flex/move_base/goal mbf_msgs/MoveBaseActionGoal -f $(find husky_mesh_nav)/experiments/$(arg experiment).bagy -s -v" output="screen"/>
+</launch>
