@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="rviz" default="true" />
-  <arg name="dataset" default="botanical_garden_osnabrueck" />
+  <arg name="dataset" default="grand_hall" />
   <arg name="dir" default="maps/$(arg dataset)" />
   <arg name="map_file" default="$(arg dir)/$(arg dataset).h5" />
   <arg name="map_config" default="$(find husky_mesh_nav)/configs/map_config.yaml" />

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="experiment" default="grand_hall"/>
+  <node name="publish_start_and_goal" pkg="rostopic" type="rostopic" args="pub -1 /move_base_flex/move_base/goal mbf_msgs/MoveBaseActionGoal -f $(find husky_mesh_nav)/experiments/$(arg experiment).bagy -s -v" output="screen"/>
+</launch>
