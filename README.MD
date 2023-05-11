@@ -77,7 +77,7 @@ graph TD
 
 Square : topic, rounded corner square : action server, rounded side square : service server
 
-In purple the action/service/topic created by move_base_legacy_relay (pkg mbf_costmap_nav: script/move_base_legacy_relay.py). Others created by mbf_abstract_nav.
+In purple the action/service/topic created by move_base_legacy_relay (pkg mbf_costmap_nav: script/move_base_legacy_relay.py). Others are created by mbf_abstract_nav.
 
 <br/>
 <br/>
