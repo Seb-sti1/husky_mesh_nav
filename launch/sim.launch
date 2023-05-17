@@ -16,5 +16,5 @@
     <!-- Rotate the robot so that the sim spawn and the TFs match -->
     <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 2.56 0 0 map odom 10"/>
 
-
+    <arg name="rviz" value="true" />
 </launch>

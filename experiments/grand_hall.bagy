@@ -19,8 +19,8 @@ goal:
         frame_id: "map"
       pose:
         position:
-          x: 8.0
-          y: 11.0
+          x: -1.5
+          y: 5.0
           z: -1.0
         orientation:
           x: 1

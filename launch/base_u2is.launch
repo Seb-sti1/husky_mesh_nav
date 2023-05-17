@@ -49,42 +49,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!--Teleop -->
     <include file="$(find husky_control)/launch/teleop.launch" />
 
-    <!--Camera 3D ZED-->
-    <node name="zed_node" pkg="zed_wrapper" type="zed_wrapper_node">
-        <rosparam command="load" file="$(find husky_bringup)/config/zed2_camera_config.yaml" />
-    </node>
-
     <!--IMU SBG-->
     <node name="sbg_device" pkg="sbg_driver" type="sbg_device" respawn="true">
         <rosparam command="load" file="$(find husky_bringup)/config/sbg_ellipse_D.yaml" />
     </node>
 
-    <!--Lidar 3D Robosense-->
-    <node name="rslidar_sdk_node" pkg="rslidar_sdk" type="rslidar_sdk_node">
-        <rosparam command="load" file="$(find husky_bringup)/config/rslidar_16_config.yaml" />
-    </node>
+    <!--Map to odom TF-->
+    <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 -0.9 0 0 0 map odom 50"/>
 
-    <!--ROS Bridge Server -->
-    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >
-        <arg name="use_compression" value="true"/>
-        <arg name="output" value="log"/>
-    </include>
-
-    <!--Mirador Driver -->
-    <include file="$(find mirador_driver)/launch/mirador_driver.launch" />
-
-    <!--Web Video Server -->
-    <!--node pkg="web_video_server" type="web_video_server" name="web_video_server">
-        <rosparam command="load" file="$(find husky_bringup)/config/web_video_server.yaml" />
-    </node-->
-
-   <!--CoHoMa Detection -->
-   <include file="$(find cohoma_detection)/launch/detect.launch"/>
-
-    <!--Diagnostic Aggregator -->
-    <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
-        <rosparam command="load" file="$(find husky_base)/config/diagnostics.yaml"/>
-    </node>
-
+    <arg name="rviz" value="true" />
 </launch>
 

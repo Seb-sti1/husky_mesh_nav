@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="rviz" default="true" />
+  <arg name="rviz" default="false" />
   <arg name="dataset" default="grand_hall" />
   <arg name="dir" default="maps/$(arg dataset)" />
   <arg name="map_file" default="$(arg dir)/$(arg dataset).h5" />
@@ -15,16 +15,9 @@
 
     <param name="planner_patience" value="$(arg planner_patience)"/>
     <param name="mesh_map/mesh_file" value="$(find husky_mesh_nav)/$(arg map_file)" />
-    <param name="mesh_map/mesh_part" value="$(arg part)"/> 
+    <param name="mesh_map/mesh_part" value="$(arg part)"/>
   </node>
 
   <!-- RViz with config -->
   <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find husky_mesh_nav)/rviz/default.rviz" />
-
-  <!--
-   <node name="move_base_legacy_relay" pkg="mbf_costmap_nav" type="move_base_legacy_relay.py">
-     <rosparam file="$(find husky_mesh_nav)/configs/default_planner.yaml" command="load"/>
-   </node>
-  -->
-
 </launch>
